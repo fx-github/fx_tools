@@ -1,0 +1,38 @@
+﻿
+#head file path
+INCLUDE_DIRECTORIES(
+	.
+	..
+	../fx
+	${FX_BOOST_INCLUDE_PATH}
+)
+
+#lib file path
+LINK_DIRECTORIES(
+	${FX_BOOST_LIB_PATH}
+)
+
+#source directory
+SET (SRC_LIST
+	main.cpp
+	targetver.h
+	stdafx.cpp
+	stdafx.h
+
+	../fx/duplicate_files.cpp
+	../fx/duplicate_files.h
+)
+
+SET(LIB_SRC_LIST
+)
+
+MESSAGE("------------------------------${CMAKE_BUILD_TYPE}------------------------------")
+IF (CMAKE_BUILD_TYPE MATCHES "Release")
+	SET(CMAKE_CONFIGURATION_TYPES Release;MinSizeRel;RelWithDebInfo)
+ENDIF ()
+
+#add executable file
+ADD_EXECUTABLE(fxduplicatefiles ${SRC_LIST})
+
+#add link library
+#TARGET_LINK_LIBRARIES(../lib/lib ${LIB_SRC_LIST})
